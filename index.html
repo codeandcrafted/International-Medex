@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GlobalMed Trade | International Medical Equipment</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; color: #333; scroll-behavior: smooth; background-color: #fff; }
+    /* ================= SECTIONS FADE IN ON SCROLL ================= */
+section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* HEADER */
+header {
+    background-color: #0a4da2;
+    color: white;
+    padding: 18px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+header h1 { font-size: 24px; font-weight: 700; }
+nav a {
+    color: white;
+    margin-left: 30px;
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin-top: 5px;
+    right: 0;
+    background: #ffd600;
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+    left: 0;
+    background: #ffd600;
+}
+
+/* HERO */
+.hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 0; /* top/bottom spacing only, no left/right padding */
+    background-color: #000; /* fallback color if video fails */
+    overflow: hidden;
+}
+
+.hero-video-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    max-width: 1200px; /* limit the video width */
+    height: auto;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    pointer-events: none; /* so video doesn’t block clicks */
+}
+
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* this makes it cover fully without stretching */
+    z-index: -1;       /* keeps it behind the text */
+}
+
+.hero-text {
+    position: relative;
+    text-align: center;
+    z-index: 1;
+    max-width: 900px; /* optional: prevent text from stretching too wide */
+    padding: 0 20px;  /* small side padding for mobile */
+    color: white;
+}
+
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+.hero h1 { font-size: 48px; font-weight: 700; margin-bottom: 20px; }
+.hero p { font-size: 20px; margin-bottom: 40px; }
+.btn-primary {
+    display: inline-block;
+    padding: 14px 40px;
+    font-weight: 600;
+    background-color: #ffd600;
+    color: #0a4da2;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.3s, color 0.3s;
+}
+.btn-primary:hover, .btn-secondary:hover {
+    transform: scale(1.05);
+}
+
+/* SECTIONS */
+section { padding: 80px 50px; max-width: 1200px; margin: auto; scroll-margin-top: 100px; }
+h2.section-title { font-size: 32px; color: #0a4da2; margin-bottom: 28px; font-weight: 700; }
+
+/* IMAGE CARDS */
+.grid-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 28px;
+}
+.card {
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #dee2e6;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    text-align: center;
+    padding-bottom: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+.card img {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.card:hover img {
+    transform: scale(1.05);
+}
+
+.card h3 {
+    margin-top: 10px;
+    font-weight: 600;
+    color: #0a4da2;
+}
+
+/* CONTACT */
+.contact-center { text-align: center;
+    padding-bottom: 40px; /* extra space at bottom */
+}
+.contact-center p { 
+    margin: 12px 0;  /* top and bottom spacing */
+}
+
+.contact-center i { color: #0a4da2; margin-right: 10px; }
+.contact-center .btn-secondary {
+    display: inline-block; /* or block if you want full width */
+    margin-top: 40px;      /* space from the text above */
+    padding: 12px 30px;
+    background-color: #0a4da2;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: background 0.3s;
+}
+
+.contact-center .btn-secondary:hover { background-color: #083f82; }
+
+/* FOOTER */
+footer {
+    background-color: #0a4da2;
+    color: white;
+    text-align: center;
+    padding: 24px;
+    font-size: 14px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    section { padding: 60px 20px; }
+    .hero h1 { font-size: 36px; }
+    .hero p { font-size: 18px; }
+    .hero-text { padding: 20px 25px; }
+}/* CTA Section with video background */
+.cta-section {
+    position: relative;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+    padding: 80px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px; /* adjust height as needed */
+}
+
+.cta-section .cta-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+
+.cta-section .cta-content {
+    position: relative;
+    z-index: 1; /* text stays on top of video */
+    max-width: 800px;
+}
+
+.cta-section .btn-primary {
+    margin-top: 20px;
+}
+/* ===== HAMBURGER MENU ===== */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    width: 28px;
+    height: 22px;
+    justify-content: space-between;
+}
+
+.hamburger span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background: white;
+    border-radius: 3px;
+    transition: all 0.3s;
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 100%;
+        background-color: #0a4da2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-top: 60px;
+        transition: right 0.3s ease;
+        z-index: 9999;
+    }
+
+    nav.show {
+        right: 0;
+    }
+
+    nav a {
+        margin: 15px 0;
+        font-size: 22px;
+        font-weight: 600;
+        color: white;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    nav a:hover {
+        color: #ffd600;
+    }
+
+    header {
+        justify-content: space-between;
+        padding: 18px 20px; /* smaller padding for mobile */
+    }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+    <h1>GlobalMed Trade</h1>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#products">Products</a>
+        <a href="#compliance">Compliance</a>
+        <a href="#logistics">Logistics</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <video class="hero-video" autoplay muted loop playsinline>
+        <source src="videos/videomedical.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="hero-text">
+        <h1>Structured International Medical Trade Solutions</h1>
+        <p>We partner with healthcare institutions worldwide to deliver regulated medical equipment and streamlined logistics — ensuring compliant, efficient, and dependable support from order to delivery.</p>
+        <a href="#contact" class="btn-primary">Request Inquiry</a>
+    </div>
+</section>
+
+<section id="about">
+    <h2 class="section-title">About Us</h2>
+    <p>GlobalMed Trade works with hospitals, clinics, and healthcare systems to supply certified medical equipment with integrity and precision. Our global network and compliance expertise ensure seamless deployment, long‑term support, and peace of mind for your institution.</p>
+</section>
+<section id="solutions">
+    <h2 class="section-title">Our Solutions</h2>
+    <div class="grid-cards">
+        <div class="card">
+            <img src="images/globallogistics.jpg" alt="Global Logistics">
+            <h3>Global Logistics</h3>
+            <p>We handle the complexities of cross-border shipping, ensuring your supplies arrive on time.</p>
+        </div>
+        <div class="card">
+            <img src="images/regulatorycompliance.jpg" alt="Regulatory Compliance">
+            <h3>Regulatory Compliance</h3>
+            <p>All products meet FDA, CE, and global regulatory standards, keeping your facility compliant.</p>
+        </div>
+        <div class="card">
+            <img src="images/supportservices.jpg" alt="Support Services">
+            <h3>Support Services</h3>
+            <p>Ongoing technical and clinical support for smooth operation of your medical equipment.</p>
+        </div>
+    </div>
+</section>
+<section id="products">
+    <h2 class="section-title">Product Categories</h2>
+    <div class="grid-cards">
+        <div class="card">
+            <img src="images/diagnostic-monitoring.webp" alt="Diagnostic & Monitoring Systems">
+            <h3>Diagnostic & Monitoring Systems</h3>
+            <p>High‑precision imaging and patient monitoring systems for clinical environments.</p>
+        </div>
+        <div class="card">
+            <img src="images/clinical-tools.jpg" alt="Clinical Tools & Instruments">
+            <h3>Clinical Tools & Instruments</h3>
+            <p>Professional surgical instruments and procedural devices with regulatory certification.</p>
+        </div>
+        <div class="card">
+           <img src="images/hospital-support.jpg" alt="Hospital & Support Supplies">
+            <h3>Hospital & Support Supplies</h3>
+            <p>Consumables, PPE, and support devices tailored to healthcare facility needs.</p>
+        </div>
+    </div>
+</section>
+<section id="resources">
+    <h2 class="section-title">Resources & Insights</h2>
+    <div class="grid-cards">
+        <div class="card">
+            <img src="images/blog.jpg" alt="Blog">
+            <h3>Blog</h3>
+            <p>Latest news, tips, and insights in international medical trade and healthcare solutions.</p>
+        </div>
+        <div class="card">
+            <img src="images/casestudy.jpg" alt="Case Study">
+            <h3>Case Study</h3>
+            <p>Explore real-world examples of our clients successfully implementing medical equipment solutions.</p>
+        </div>
+        <div class="card">
+            <img src="images/whitepaper.jpg" alt="Whitepaper">
+            <h3>Whitepaper</h3>
+            <p>In-depth reports and expert analysis to help healthcare institutions make informed decisions.</p>
+        </div>
+    </div>
+</section>
+
+<section id="compliance">
+    <h2 class="section-title">Compliance</h2>
+    <p>Every product is vetted to meet FDA, CE, and global regulatory standards. We prioritize safety, traceability, and quality assurance so your facility stays compliant with evolving requirements.</p>
+</section>
+
+<section id="logistics">
+    <h2 class="section-title">Global Logistics</h2>
+    <p>From regulatory documentation to global shipping and delivery, we handle the complexities of cross‑border logistics so your medical supplies arrive on time, intact, and ready to deploy.</p>
+</section>
+<section id="cta" class="cta-section">
+    <!-- Video background -->
+    <video autoplay muted loop playsinline class="cta-video">
+        <source src="videos/logistics.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Text on top -->
+    <div class="cta-content">
+        <h2>Ready to Streamline Your Medical Supply?</h2>
+        <p>Contact us today to learn how GlobalMed Trade can optimize your operations.</p>
+        <a href="#contact" class="btn-primary">Request Inquiry</a>
+    </div>
+</section>
+
+<footer>
+    © 2026 GlobalMed Trade. All Rights Reserved.
+</footer>
+    <script>
+const sections = document.querySelectorAll('section');
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.2 });
+
+sections.forEach(section => observer.observe(section));
+</script>
+<script>
+const hamburger = document.querySelector('.hamburger');
+const nav = document.querySelector('nav');
+
+// Toggle menu
+hamburger.addEventListener('click', () => {
+    nav.classList.toggle('show');
+});
+
+// Close menu when a link is clicked
+const navLinks = document.querySelectorAll('nav a');
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        nav.classList.remove('show');
+    });
+});
+</script>
+
+</body>
+</html>
